@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3F947F94-F9D7-400B-8160-0D33EC7FDD49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlteringsRegistrationService", "AlteringsRegistrationService\AlteringsRegistrationService.csproj", "{BC679EA4-F61A-435B-86C8-540412B8E7DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlteringsRegistrationService", "Services\AlteringsRegistrationService\AlteringsRegistrationService.csproj", "{BC679EA4-F61A-435B-86C8-540412B8E7DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBasedMicroservice.Shared", "AzureBasedMicroservice.Shared\AzureBasedMicroservice.Shared.csproj", "{999AF8D3-D2F6-4344-A651-D2FEBFE4F842}"
 EndProject
