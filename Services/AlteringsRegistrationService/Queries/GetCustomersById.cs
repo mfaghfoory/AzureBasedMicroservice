@@ -1,8 +1,6 @@
-﻿using Shared;
-
-namespace AlteringsRegistrationService.Queries
+﻿namespace AlteringsRegistrationService.Queries
 {
-    public class GetCustomersById : IRequest
+    public class GetCustomersById
     {
         public int CustomerId { get; set; }
         public GetCustomersById(int customerId)

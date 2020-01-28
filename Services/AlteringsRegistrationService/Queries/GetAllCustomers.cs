@@ -1,8 +1,6 @@
-﻿using Shared;
-
-namespace AlteringsRegistrationService.Queries
+﻿namespace AlteringsRegistrationService.Queries
 {
-    public class GetAllCustomers : IRequest
+    public class GetAllCustomers
     {
     }
 }
