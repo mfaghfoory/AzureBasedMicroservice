@@ -4,8 +4,8 @@ namespace AlteringsRegistrationService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AlteringsController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-
+        
     }
 }
