@@ -1,0 +1,21 @@
+﻿{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:14524"
+  },
+  "ReRoutes": [
+    {
+      "UpstreamPathTemplate": "/api/AlteringsService/{everything}",
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 1212
+        }
+      ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    }
+  ]
+}
