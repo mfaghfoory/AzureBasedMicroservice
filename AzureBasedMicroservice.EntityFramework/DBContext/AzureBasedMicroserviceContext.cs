@@ -10,7 +10,7 @@ namespace AzureBasedMicroservice.EntityFramework.DBContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var sqlitePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, "AzureBasedMicroservice.EntityFramework", "SampleDb.db");
+            var sqlitePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "AzureBasedMicroservice.EntityFramework", "SampleDb.db");
             options.UseSqlite($"Data Source={sqlitePath}");
         }
 

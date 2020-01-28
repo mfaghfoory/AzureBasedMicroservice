@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AlteringsRegistrationService.Controllers;
+using AlteringsRegistrationService.Queries;
+using AzureBasedMicroservice.EntityFramework.Customers;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.CQRS;
+using System.Collections.Generic;
 
 namespace AlteringsRegistrationService
 {
@@ -19,6 +24,7 @@ namespace AlteringsRegistrationService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped<IRequestHandler<GetAllCustomers, IList<Customer>>, CustomersController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

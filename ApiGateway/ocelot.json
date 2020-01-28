@@ -4,8 +4,8 @@
   },
   "ReRoutes": [
     {
-      "UpstreamPathTemplate": "/api/AlteringsService/{everything}",
-      "DownstreamPathTemplate": "/api/{everything}",
+      "UpstreamPathTemplate": "/api/AlteringsService/{catchAll}",
+      "DownstreamPathTemplate": "/api/{catchAll}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
