@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlteringsRegistrationServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureBasedMicroservice.Shared", "AzureBasedMicroservice.Shared\AzureBasedMicroservice.Shared.csproj", "{999AF8D3-D2F6-4344-A651-D2FEBFE4F842}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{045E53C1-A547-4549-815C-FC2AAA714399}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{045E53C1-A547-4549-815C-FC2AAA714399}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureBasedMicroservice.EntityFramework", "AzureBasedMicroservice.EntityFramework\AzureBasedMicroservice.EntityFramework.csproj", "{2488B4C7-B122-421E-87A0-E817E413172A}"
 EndProject

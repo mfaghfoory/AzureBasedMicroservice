@@ -1,4 +1,5 @@
 ﻿using AzureBasedMicroservice.EntityFramework.DBContext;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,8 @@ namespace CustomersService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, AzureBasedMicroserviceContext>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddFluentValidation()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
