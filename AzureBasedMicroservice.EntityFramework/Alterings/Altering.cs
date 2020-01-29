@@ -26,7 +26,7 @@ namespace AzureBasedMicroservice.EntityFramework.Alterings
         /// <summary>
         /// Value of altering. e.g: 5cm
         /// </summary>
-        public string Value { get; set; }
+        public int Value { get; set; }
 
         /// <summary>
         /// If true, the value will be added to previous size and vice versa

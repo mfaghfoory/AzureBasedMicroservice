@@ -30,7 +30,7 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
 
                     b.Property<int>("State");
 
-                    b.Property<string>("Value");
+                    b.Property<int>("Value");
 
                     b.HasKey("Id");
 
@@ -49,6 +49,11 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new { Id = 1, FullName = "User 1" },
+                        new { Id = 2, FullName = "User 2" }
+                    );
                 });
 
             modelBuilder.Entity("AzureBasedMicroservice.EntityFramework.Customers.Payment", b =>

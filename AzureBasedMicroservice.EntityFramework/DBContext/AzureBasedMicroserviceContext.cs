@@ -16,5 +16,23 @@ namespace AzureBasedMicroservice.EntityFramework.DBContext
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Altering> Alterings { get; set; }
         public DbSet<Payment> Payments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer
+                {
+                    Id = 1,
+                    FullName = "User 1"
+                }
+            );
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer
+                {
+                    Id = 2,
+                    FullName = "User 2"
+                }
+            );
+        }
     }
 }

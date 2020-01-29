@@ -2,7 +2,7 @@
 
 namespace AzureBasedMicroservice.EntityFramework.Migrations
 {
-    public partial class Initial : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,7 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
                     State = table.Column<int>(nullable: false),
                     Operation = table.Column<int>(nullable: false),
                     Direction = table.Column<int>(nullable: false),
-                    Value = table.Column<string>(nullable: true),
+                    Value = table.Column<int>(nullable: false),
                     IsIncrease = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -50,7 +50,8 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AlteringId = table.Column<int>(nullable: false),
-                    TrackingCode = table.Column<string>(nullable: true)
+                    TrackingCode = table.Column<string>(nullable: true),
+                    Amount = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,6 +63,16 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "FullName" },
+                values: new object[] { 1, "User 1" });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "FullName" },
+                values: new object[] { 2, "User 2" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Alterings_CustomerId",

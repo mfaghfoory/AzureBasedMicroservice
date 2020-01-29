@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AzureBasedMicroservice.EntityFramework.Migrations
 {
     [DbContext(typeof(AzureBasedMicroserviceContext))]
-    [Migration("20200129123814_v2")]
-    partial class v2
+    [Migration("20200129220331_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,7 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
 
                     b.Property<int>("State");
 
-                    b.Property<string>("Value");
+                    b.Property<int>("Value");
 
                     b.HasKey("Id");
 
@@ -51,6 +51,11 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new { Id = 1, FullName = "User 1" },
+                        new { Id = 2, FullName = "User 2" }
+                    );
                 });
 
             modelBuilder.Entity("AzureBasedMicroservice.EntityFramework.Customers.Payment", b =>
