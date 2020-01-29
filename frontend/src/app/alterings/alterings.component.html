@@ -49,13 +49,39 @@
                     <label for="amount">Amount</label>
                     <input type="number" name="amount" class="form-control" placeholder="Enter amount" [(ngModel)]="amount">
                 </div>
-                <div class="alert alert-danger" *ngIf="paymentError">
-                    <pre>{{paymentError}}</pre>
+                <div class="alert alert-danger" *ngIf="errorReturned">
+                    <pre>{{errorReturned}}</pre>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" [disabled]="creatingPayment" class="btn btn-secondary" data-dismiss="modal" #closePaymentModal>Close</button>
-                <button type="button" [disabled]="creatingPayment" class="btn btn-primary" (click)="onCreateNewPayment()">Save</button>
+                <button type="button" [disabled]="pending" class="btn btn-secondary" data-dismiss="modal" #closePaymentModal>Close</button>
+                <button type="button" [disabled]="pending" class="btn btn-primary" (click)="onCreateNewPayment()">Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="alteration" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Alteration Info</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" class="form-control" placeholder="Enter amount" [(ngModel)]="amount">
+                </div>
+                <div class="alert alert-danger" *ngIf="errorReturned">
+                    <pre>{{errorReturned}}</pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]="pending" class="btn btn-secondary" data-dismiss="modal" #closeAlterationModal>Close</button>
+                <button type="button" [disabled]="pending" class="btn btn-primary" (click)="onCreateNewAlteration()">Save</button>
             </div>
         </div>
 

@@ -1,6 +1,9 @@
 ﻿using AlteringsRegistrationService.Handlers;
+using AlteringsRegistrationService.Validators;
+using AzureBasedMicroservice.EntityFramework.Alterings;
 using AzureBasedMicroservice.EntityFramework.DBContext;
 using AzureBasedMicroservice.Shared.CQRS;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +42,7 @@ namespace AlteringsRegistrationService
             {
                 typeof(AlterationIsPaidHandler)
             });
+            services.AddTransient<IValidator<Altering>, NewAlterationValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -40,7 +40,7 @@ namespace CustomersService.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<CustomerViewModel> Get([FromQuery]int id)
+        public async Task<CustomerViewModel> Get(int id)
         {
             var res = await context.Select(selector).FirstOrDefaultAsync(x => x.Id == id);
             return res;

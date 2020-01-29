@@ -33,10 +33,22 @@ namespace AlteringsRegistrationService.Controllers
         };
 
         [HttpGet]
-        public async Task<IList<AlterationViewModel>> GetAllAlterations([FromQuery]int customerId)
+        public async Task<IList<AlterationViewModel>> GetAllAlterations(int customerId)
         {
             var res = await context.Where(x => x.CustomerId == customerId).Select(selector).ToListAsync();
             return res;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAlteration([FromBody]Altering model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            context.Add(model);
+            await _unitOfWork.SaveChangesAsync();
+            return Ok();
         }
     }
 }
