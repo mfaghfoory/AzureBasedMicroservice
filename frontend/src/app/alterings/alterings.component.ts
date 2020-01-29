@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppMainServiceService } from '../services/app-main-service.service';
 import { Alterations } from '../models/alterations';
 import { Customers } from '../models/customers';
+import { NewPayment } from '../models/new-payment';
 
 @Component({
   selector: 'app-alterings',
@@ -15,6 +16,11 @@ export class AlteringsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private service: AppMainServiceService) { }
   data: Alterations[];
   customer: Customers;
+  currentAlteration = 0;
+  amount = 0;
+  creatingPayment = false;
+  paymentError = '';
+  @ViewChild('closePaymentModal', { static: true }) closePaymentModal: ElementRef;
   ngOnInit() {
     this.route.params
       .subscribe(p => {
@@ -39,5 +45,27 @@ export class AlteringsComponent implements OnInit {
     this.service.getCustomerById(customerId).subscribe(x => {
       this.customer = x;
     })
+  }
+
+  onCreateNewPayment() {
+    this.paymentError = null;
+    this.creatingPayment = true;
+    this.service.registerNewPayment({ alteringId: this.currentAlteration, amount: this.amount }).
+      subscribe(x => {
+        this.creatingPayment = false;
+        setTimeout(() => { this.closePaymentModal.nativeElement.click(); }, 50)
+      }, err => {
+        if (err.status == 400 && err.error) {
+          let allErrors = new Array<string>();
+          for (let e in err.error) {
+            let errors: [] = err.error[e];
+            errors && errors.forEach(xx => {
+              allErrors.push(xx);
+            })
+          }
+          this.paymentError = allErrors.join('\r\n');
+          this.creatingPayment = false;
+        }
+      })
   }
 }

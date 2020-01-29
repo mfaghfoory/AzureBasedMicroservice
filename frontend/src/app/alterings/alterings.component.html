@@ -27,8 +27,8 @@
             <td>{{item.isIncrease}}</td>
             <td>{{item.state}}</td>
             <td>
-                <button *ngIf="item.state == 'Initial'" class="btn btn-primary" 
-                data-toggle="modal" data-target="#payment">Set To Paid</button>
+                <button *ngIf="item.state == 'Initial'" class="btn btn-primary" data-toggle="modal"
+                    data-target="#payment" (click)="currentAlteration = item.id">Set To Paid</button>
                 <button *ngIf="item.state == 'Paid'" class="btn btn-success">Set To Done</button>
             </td>
         </tr>
@@ -38,20 +38,26 @@
 <!-- Modal -->
 <div id="payment" class="modal fade" role="dialog">
     <div class="modal-dialog">
-  
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Payment</h4>
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Payment</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" class="form-control" placeholder="Enter amount" [(ngModel)]="amount">
+                </div>
+                <div class="alert alert-danger" *ngIf="paymentError">
+                    <pre>{{paymentError}}</pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]="creatingPayment" class="btn btn-secondary" data-dismiss="modal" #closePaymentModal>Close</button>
+                <button type="button" [disabled]="creatingPayment" class="btn btn-primary" (click)="onCreateNewPayment()">Save</button>
+            </div>
         </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save</button>
-        </div>
-      </div>
-  
+
     </div>
-  </div>
+</div>

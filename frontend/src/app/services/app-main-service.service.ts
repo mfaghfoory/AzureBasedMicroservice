@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Customers } from '../models/customers';
 import { Observable } from 'rxjs';
 import { Alterations } from '../models/alterations';
+import { NewPayment } from '../models/new-payment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,11 @@ export class AppMainServiceService {
 
   getAlterationsByCustomerId(customerId: number): Observable<Alterations[]> {
     return this.httpClient.get<Alterations[]>(`${environment.apiUrl}api/AlteringsService/Alterings?customerId=${customerId}`);
+  }
+
+  registerNewPayment(model: NewPayment): Observable<string> {
+    return this.httpClient.post<string>(`${environment.apiUrl}api/PaymentsService/Payments`,
+      model
+    );
   }
 }
