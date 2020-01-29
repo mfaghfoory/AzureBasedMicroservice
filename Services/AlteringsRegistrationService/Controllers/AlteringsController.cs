@@ -1,4 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AlteringsRegistrationService.Models;
+using AzureBasedMicroservice.EntityFramework.Alterings;
+using AzureBasedMicroservice.EntityFramework.DBContext;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace AlteringsRegistrationService.Controllers
 {
@@ -6,6 +15,23 @@ namespace AlteringsRegistrationService.Controllers
     [ApiController]
     public class AlteringsController : ControllerBase
     {
+        private readonly AzureBasedMicroserviceContext _dbContext = new AzureBasedMicroserviceContext();
 
+        Expression<Func<Altering, AlterationViewModel>> selector = x => new AlterationViewModel
+        {
+            Id = x.Id,
+            Direction = x.Direction.ToString(),
+            IsIncrease = x.IsIncrease,
+            Operation = x.Operation.ToString(),
+            State = x.State.ToString(),
+            Value = x.Value
+        };
+
+        [HttpGet]
+        public async Task<IList<AlterationViewModel>> GetAllAlterations(int customerId)
+        {
+            var res = await _dbContext.Alterings.Where(x => x.CustomerId == customerId).Select(selector).ToListAsync();
+            return res;
+        }
     }
 }

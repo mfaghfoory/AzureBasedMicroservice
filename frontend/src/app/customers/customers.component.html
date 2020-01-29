@@ -1,4 +1,6 @@
 <table class="table table-hover">
+    <div *ngIf="isLoading">Loading...</div>
+    <div *ngIf="!isLoading && !data.length">No data found</div>
     <thead>
         <tr>
             <th>Name</th>
@@ -13,7 +15,7 @@
             <td>{{item.overallAlterings}}</td>
             <td>{{item.unpaidAlterings}}</td>
             <td>
-                <a [routerLink]="['alterations', item.id]" class="btn btn-primary">Alterations</a>
+                <a [routerLink]="['../alterations', item.id]" class="btn btn-primary">Alterations</a>
             </td>
         </tr>
     </tbody>

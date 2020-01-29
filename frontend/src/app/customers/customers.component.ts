@@ -9,6 +9,7 @@ import { Customers } from '../models/customers';
 })
 export class CustomersComponent implements OnInit {
 
+  isLoading = false;
   constructor(private service: AppMainServiceService) { }
   data: Customers[];
   ngOnInit() {
@@ -16,8 +17,10 @@ export class CustomersComponent implements OnInit {
   }
 
   loadCustomers() {
+    this.isLoading = true;
     this.service.getCustomers().subscribe(x => {
       this.data = x;
+      this.isLoading = false;
     });
   }
 }
