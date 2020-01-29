@@ -1,3 +1,11 @@
+<br>
+<div class="row">
+    <a class="btn btn-primary" [routerLink]="['../../customers']">Return</a>
+</div>
+<br>
+<div class="alert alert-info">
+    <div *ngIf="customer">Orders of {{customer.fullName}}</div>
+</div>
 <table class="table table-hover">
     <div *ngIf="isLoading">Loading...</div>
     <div *ngIf="!isLoading && !data.length">No data found</div>
@@ -19,8 +27,31 @@
             <td>{{item.isIncrease}}</td>
             <td>{{item.state}}</td>
             <td>
-                <!-- <a [routerLink]="['alterations', item.id]" class="btn btn-primary">Alterations</a> -->
+                <button *ngIf="item.state == 'Initial'" class="btn btn-primary" 
+                data-toggle="modal" data-target="#payment">Set To Paid</button>
+                <button *ngIf="item.state == 'Paid'" class="btn btn-success">Set To Done</button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<!-- Modal -->
+<div id="payment" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Payment</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>

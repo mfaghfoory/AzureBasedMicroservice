@@ -15,8 +15,13 @@ namespace AlteringsRegistrationService.Controllers
     [ApiController]
     public class AlteringsController : ControllerBase
     {
-        private readonly AzureBasedMicroserviceContext _dbContext = new AzureBasedMicroserviceContext();
-
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly DbSet<Altering> context;
+        public AlteringsController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+            context = unitOfWork.Set<Altering>();
+        }
         Expression<Func<Altering, AlterationViewModel>> selector = x => new AlterationViewModel
         {
             Id = x.Id,
@@ -30,7 +35,7 @@ namespace AlteringsRegistrationService.Controllers
         [HttpGet]
         public async Task<IList<AlterationViewModel>> GetAllAlterations(int customerId)
         {
-            var res = await _dbContext.Alterings.Where(x => x.CustomerId == customerId).Select(selector).ToListAsync();
+            var res = await context.Where(x => x.CustomerId == customerId).Select(selector).ToListAsync();
             return res;
         }
     }

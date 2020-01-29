@@ -5,7 +5,7 @@ using System.IO;
 
 namespace AzureBasedMicroservice.EntityFramework.DBContext
 {
-    public class AzureBasedMicroserviceContext : DbContext
+    public class AzureBasedMicroserviceContext : DbContext, IUnitOfWork
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

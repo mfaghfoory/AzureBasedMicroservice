@@ -5,8 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Handlers\EventHandlers\" />
+    <Compile Remove="Handlers\EventHandlers\**" />
+    <Content Remove="Handlers\EventHandlers\**" />
+    <EmbeddedResource Remove="Handlers\EventHandlers\**" />
+    <None Remove="Handlers\EventHandlers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Queries\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

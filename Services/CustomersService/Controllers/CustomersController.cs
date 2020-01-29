@@ -1,14 +1,14 @@
-﻿using AzureBasedMicroservice.EntityFramework.Customers;
+﻿using AzureBasedMicroservice.EntityFramework.Alterings;
+using AzureBasedMicroservice.EntityFramework.Customers;
 using AzureBasedMicroservice.EntityFramework.DBContext;
 using CustomersService.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using AzureBasedMicroservice.EntityFramework.Alterings;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace CustomersService.Controllers
 {
@@ -16,7 +16,13 @@ namespace CustomersService.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        private readonly AzureBasedMicroserviceContext _dbContext = new AzureBasedMicroserviceContext();
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly DbSet<Customer> context;
+        public CustomersController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+            context = unitOfWork.Set<Customer>();
+        }
 
         Expression<Func<Customer, CustomerViewModel>> selector = x => new CustomerViewModel
         {
@@ -29,14 +35,14 @@ namespace CustomersService.Controllers
         [HttpGet]
         public async Task<IList<CustomerViewModel>> GetAllCustomers()
         {
-            var res = await _dbContext.Customers.Select(selector).ToListAsync();
+            var res = await context.Select(selector).ToListAsync();
             return res;
         }
 
         [HttpGet("{id}")]
         public async Task<CustomerViewModel> Get(int id)
         {
-            var res = await _dbContext.Customers.Select(selector).FirstOrDefaultAsync(x => x.Id == id);
+            var res = await context.Select(selector).FirstOrDefaultAsync(x => x.Id == id);
             return res;
         }
     }
