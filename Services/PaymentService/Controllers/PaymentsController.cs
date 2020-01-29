@@ -33,7 +33,7 @@ namespace PaymentService.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }            
+            }
             var trackingCode = Guid.NewGuid().ToString();
             context.Add(new Payment
             {

@@ -37,7 +37,8 @@ namespace ApiGateway
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseSwaggerForOcelotUI(Configuration, opt => {
+            app.UseSwaggerForOcelotUI(Configuration, opt =>
+            {
                 opt.PathToSwaggerGenerator = "/swagger/docs";
             });
             app.UseOcelot().Wait();

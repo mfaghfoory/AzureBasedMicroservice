@@ -1,5 +1,4 @@
 ﻿using MassTransit;
-using MassTransit.Azure.ServiceBus.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
