@@ -1,11 +1,7 @@
-﻿using GreenPipes;
-using MassTransit;
+﻿using MassTransit;
 using MassTransit.AzureServiceBusTransport;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace AzureBasedMicroservice.Shared.CQRS
 {
@@ -13,11 +9,11 @@ namespace AzureBasedMicroservice.Shared.CQRS
     {
         static string connectionString = "Endpoint=sb://your-service-bus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xyz";
 
-        public static void MassTransist(this IServiceCollection services, string appName, List<Type> handlers)
+        public static void MassTransist(this IServiceCollection services, string appName, List<IConsumer> consumers)
         {
-            foreach (var item in handlers)
+            foreach (var item in consumers)
             {
-                services.AddScoped(item);
+                services.AddScoped(item.GetType());
             }
 
             services.AddMassTransit(x =>
@@ -34,9 +30,9 @@ namespace AzureBasedMicroservice.Shared.CQRS
 
                         cfg.ReceiveEndpoint(host, $"", e =>
                         {
-                            foreach (var item in handlers)
+                            foreach (var item in consumers)
                             {                                
-                                e.Consumer(item, c => p.GetRequiredService(c));
+                                e.Consumer(item.GetType(), c => p.GetRequiredService(c));
                             }
                         });
                         // or, configure the endpoints by convention
