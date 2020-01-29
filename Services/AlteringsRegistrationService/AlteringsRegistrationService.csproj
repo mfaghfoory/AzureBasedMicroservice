@@ -6,14 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Handlers\EventHandlers\**" />
+    <Compile Remove="wwwroot\**" />
     <Content Remove="Handlers\EventHandlers\**" />
+    <Content Remove="wwwroot\**" />
     <EmbeddedResource Remove="Handlers\EventHandlers\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
     <None Remove="Handlers\EventHandlers\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Queries\" />
-    <Folder Include="wwwroot\" />
+    <None Remove="wwwroot\**" />
   </ItemGroup>
 
   <ItemGroup>

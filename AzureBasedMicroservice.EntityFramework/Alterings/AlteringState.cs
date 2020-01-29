@@ -3,6 +3,7 @@
     public enum AlteringState
     {
         Initial,
-        Paid
+        Paid,
+        Done
     }
 }
