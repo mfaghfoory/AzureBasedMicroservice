@@ -27,6 +27,7 @@ namespace PaymentService.Controllers
             alterings = unitOfWork.Set<Altering>();
         }
 
+        [HttpPost]
         public async Task<IActionResult> RegisterNewPayment([FromBody]NewPaymentViewModel model)
         {
             if (!ModelState.IsValid)

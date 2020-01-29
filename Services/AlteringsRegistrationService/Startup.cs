@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +15,7 @@ namespace AlteringsRegistrationService
 {
     public class Startup
     {
+        private string projectName = "AlteringsRegistrationService";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,8 +29,12 @@ namespace AlteringsRegistrationService
             services.AddScoped<IUnitOfWork, AzureBasedMicroserviceContext>();
             services.AddMvc().AddFluentValidation()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = projectName, Version = "v1" });
+            });
 
-            MassTransistConfiguration.MassTransist(services, "AlteringsRegistrationService",
+            MassTransistConfiguration.MassTransist(services, projectName,
                 new List<Type>()
             {
                 typeof(AlterationIsPaidHandler)
@@ -46,7 +52,11 @@ namespace AlteringsRegistrationService
             {
                 app.UseHsts();
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", projectName);
+            });
             app.UseMvc();
         }
     }

@@ -33,7 +33,7 @@ namespace AlteringsRegistrationService.Controllers
         };
 
         [HttpGet]
-        public async Task<IList<AlterationViewModel>> GetAllAlterations(int customerId)
+        public async Task<IList<AlterationViewModel>> GetAllAlterations([FromQuery]int customerId)
         {
             var res = await context.Where(x => x.CustomerId == customerId).Select(selector).ToListAsync();
             return res;

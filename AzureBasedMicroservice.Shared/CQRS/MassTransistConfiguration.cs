@@ -1,5 +1,5 @@
 ﻿using MassTransit;
-using MassTransit.AzureServiceBusTransport;
+using MassTransit.Azure.ServiceBus.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -21,25 +21,25 @@ namespace AzureBasedMicroservice.Shared.CQRS
             {
                 x.AddBus(p =>
                 {
-                    var bus = Bus.Factory.CreateUsingAzureServiceBus(cfg =>
+                    var bus = Bus.Factory.CreateUsingInMemory(cfg =>
                     {
-                        var host = cfg.Host(connectionString, h =>
-                        {
-                            // This is optional, but you can specify the protocol to use.
-                            //h.TransportType = TransportType.AmqpWebSockets;
-                        });
+                        //var host = cfg.Host(connectionString, h =>
+                        //{
+                        //    // This is optional, but you can specify the protocol to use.
+                        //    //h.TransportType = TransportType.AmqpWebSockets;
+                        //});
 
-                        cfg.ReceiveEndpoint(host, queueName, e =>
-                        {
-                            foreach (var item in consumers)
-                            {
-                                e.Consumer(item, c => p.GetRequiredService(c));
-                            }
-                        });
-                        // or, configure the endpoints by convention
-                        cfg.ConfigureEndpoints(p);
+                        //cfg.ReceiveEndpoint(host, queueName, e =>
+                        //{
+                        //    foreach (var item in consumers)
+                        //    {
+                        //        e.Consumer(item, c => p.GetRequiredService(c));
+                        //    }
+                        //});
+                        //// or, configure the endpoints by convention
+                        //cfg.ConfigureEndpoints(p);
 
-                        services.AddScoped(provider => host);
+                        //services.AddScoped(provider => host);
                     });
                     bus.Start();
                     services.AddSingleton<IPublishEndpoint>(bus);

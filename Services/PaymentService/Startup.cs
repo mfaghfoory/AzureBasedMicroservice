@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using PaymentService.Models;
 using PaymentService.Validators;
 using System;
@@ -16,6 +17,7 @@ namespace PaymentService
 {
     public class Startup
     {
+        private string projectName = "PaymentService";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,7 +32,12 @@ namespace PaymentService
             services.AddMvc().AddFluentValidation()
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            MassTransistConfiguration.MassTransist(services, "PaymentService",
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = projectName, Version = "v1" });
+            });
+
+            MassTransistConfiguration.MassTransist(services, projectName,
                 new List<Type>());
 
             services.AddTransient<IValidator<NewPaymentViewModel>, NewPaymentValidator>();
@@ -47,7 +54,11 @@ namespace PaymentService
             {
                 app.UseHsts();
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", projectName);
+            });
             app.UseHttpsRedirection();
             app.UseMvc();
         }

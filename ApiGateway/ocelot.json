@@ -15,7 +15,9 @@
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
-      }
+      },
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "SwaggerKey": "Alterings"
     },
     {
       "UpstreamPathTemplate": "/api/CustomersService/{catchAll}",
@@ -29,7 +31,9 @@
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
-      }
+      },
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "SwaggerKey": "Customers"
     },
     {
       "UpstreamPathTemplate": "/api/PaymentsService/{catchAll}",
@@ -43,7 +47,41 @@
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
-      }
+      },
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "SwaggerKey": "Payments"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "Alterings",
+      "Config": [
+        {
+          "Name": "Alterings API",
+          "Version": "v1",
+          "Url": "http://localhost:1212/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "Customers",
+      "Config": [
+        {
+          "Name": "Customers API",
+          "Version": "v1",
+          "Url": "http://localhost:1213/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "Payments",
+      "Config": [
+        {
+          "Name": "Payments API",
+          "Version": "v1",
+          "Url": "http://localhost:1214/swagger/v1/swagger.json"
+        }
+      ]
     }
   ]
 }
