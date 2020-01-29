@@ -1,19 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{3C960D7E-059E-4374-8AE8-63AF117170E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{3C960D7E-059E-4374-8AE8-63AF117170E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3F947F94-F9D7-400B-8160-0D33EC7FDD49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlteringsRegistrationService", "Services\AlteringsRegistrationService\AlteringsRegistrationService.csproj", "{BC679EA4-F61A-435B-86C8-540412B8E7DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlteringsRegistrationService", "Services\AlteringsRegistrationService\AlteringsRegistrationService.csproj", "{BC679EA4-F61A-435B-86C8-540412B8E7DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBasedMicroservice.Shared", "AzureBasedMicroservice.Shared\AzureBasedMicroservice.Shared.csproj", "{999AF8D3-D2F6-4344-A651-D2FEBFE4F842}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureBasedMicroservice.Shared", "AzureBasedMicroservice.Shared\AzureBasedMicroservice.Shared.csproj", "{999AF8D3-D2F6-4344-A651-D2FEBFE4F842}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{045E53C1-A547-4549-815C-FC2AAA714399}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBasedMicroservice.EntityFramework", "AzureBasedMicroservice.EntityFramework\AzureBasedMicroservice.EntityFramework.csproj", "{2488B4C7-B122-421E-87A0-E817E413172A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureBasedMicroservice.EntityFramework", "AzureBasedMicroservice.EntityFramework\AzureBasedMicroservice.EntityFramework.csproj", "{2488B4C7-B122-421E-87A0-E817E413172A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomersService", "Services\CustomersService\CustomersService.csproj", "{E13E5A1B-02EB-42F5-98B9-843A2CB7638F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{2488B4C7-B122-421E-87A0-E817E413172A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2488B4C7-B122-421E-87A0-E817E413172A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2488B4C7-B122-421E-87A0-E817E413172A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E13E5A1B-02EB-42F5-98B9-843A2CB7638F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E13E5A1B-02EB-42F5-98B9-843A2CB7638F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E13E5A1B-02EB-42F5-98B9-843A2CB7638F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E13E5A1B-02EB-42F5-98B9-843A2CB7638F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BC679EA4-F61A-435B-86C8-540412B8E7DB} = {3F947F94-F9D7-400B-8160-0D33EC7FDD49}
 		{2488B4C7-B122-421E-87A0-E817E413172A} = {045E53C1-A547-4549-815C-FC2AAA714399}
+		{E13E5A1B-02EB-42F5-98B9-843A2CB7638F} = {3F947F94-F9D7-400B-8160-0D33EC7FDD49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF504E8F-30C8-484C-9A63-D8F8FF93A058}
