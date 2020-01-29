@@ -31,7 +31,7 @@ namespace AzureBasedMicroservice.Shared.CQRS
                         cfg.ReceiveEndpoint(host, $"", e =>
                         {
                             foreach (var item in consumers)
-                            {                                
+                            {
                                 e.Consumer(item.GetType(), c => p.GetRequiredService(c));
                             }
                         });
