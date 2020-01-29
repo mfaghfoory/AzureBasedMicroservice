@@ -1,4 +1,4 @@
-﻿namespace AlteringsRegistrationService.Commands
+﻿namespace AzureBasedMicroservice.Shared.CQRS.Commands
 {
     public class AlterationIsPaid
     {

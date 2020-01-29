@@ -38,6 +38,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend", "frontend\", "{6
 		SlnRelativePath = "frontend\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "Services\PaymentService\PaymentService.csproj", "{CC4B0460-1920-4301-A581-9F69297EA976}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{6C2002EB-B1A2-4AD0-8B42-3B281105A74A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C2002EB-B1A2-4AD0-8B42-3B281105A74A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C2002EB-B1A2-4AD0-8B42-3B281105A74A}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{CC4B0460-1920-4301-A581-9F69297EA976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4B0460-1920-4301-A581-9F69297EA976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4B0460-1920-4301-A581-9F69297EA976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4B0460-1920-4301-A581-9F69297EA976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{BC679EA4-F61A-435B-86C8-540412B8E7DB} = {3F947F94-F9D7-400B-8160-0D33EC7FDD49}
 		{2488B4C7-B122-421E-87A0-E817E413172A} = {045E53C1-A547-4549-815C-FC2AAA714399}
 		{E13E5A1B-02EB-42F5-98B9-843A2CB7638F} = {3F947F94-F9D7-400B-8160-0D33EC7FDD49}
+		{CC4B0460-1920-4301-A581-9F69297EA976} = {3F947F94-F9D7-400B-8160-0D33EC7FDD49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF504E8F-30C8-484C-9A63-D8F8FF93A058}

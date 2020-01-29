@@ -5,28 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Handlers\EventHandlers\**" />
-    <Content Remove="Handlers\EventHandlers\**" />
-    <EmbeddedResource Remove="Handlers\EventHandlers\**" />
-    <None Remove="Handlers\EventHandlers\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Queries\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MassTransit" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\AzureBasedMicroservice.EntityFramework\AzureBasedMicroservice.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\AzureBasedMicroservice.Shared\AzureBasedMicroservice.Shared.csproj" />
   </ItemGroup>
 
 </Project>
