@@ -10,6 +10,8 @@ namespace AzureBasedMicroservice.EntityFramework.Customers
 
         public string TrackingCode { get; set; }
 
+        public double Amount { get; set; }
+
         [ForeignKey(nameof(AlteringId))]
         public Altering Altering { get; set; }
     }

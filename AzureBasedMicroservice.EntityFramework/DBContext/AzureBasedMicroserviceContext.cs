@@ -1,7 +1,6 @@
 ﻿using AzureBasedMicroservice.EntityFramework.Alterings;
 using AzureBasedMicroservice.EntityFramework.Customers;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.IO;
 
 namespace AzureBasedMicroservice.EntityFramework.DBContext
@@ -10,7 +9,7 @@ namespace AzureBasedMicroservice.EntityFramework.DBContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var sqlitePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "AzureBasedMicroservice.EntityFramework", "SampleDb.db");
+            var sqlitePath = Path.Combine("D:", "SampleDb.db");
             options.UseSqlite($"Data Source={sqlitePath}");
         }
 
