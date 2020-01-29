@@ -1,9 +1,14 @@
 ﻿using AzureBasedMicroservice.EntityFramework.Customers;
 using AzureBasedMicroservice.EntityFramework.DBContext;
+using CustomersService.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using AzureBasedMicroservice.EntityFramework.Alterings;
+using System;
+using System.Linq.Expressions;
 
 namespace CustomersService.Controllers
 {
@@ -13,17 +18,25 @@ namespace CustomersService.Controllers
     {
         private readonly AzureBasedMicroserviceContext _dbContext = new AzureBasedMicroserviceContext();
 
-        [HttpGet]
-        public async Task<IList<Customer>> GetAllCustomers()
+        Expression<Func<Customer, CustomerViewModel>> selector = x => new CustomerViewModel
         {
-            var res = await _dbContext.Customers.ToListAsync();
+            Id = x.Id,
+            FullName = x.FullName,
+            OverallAlterings = x.Alterings.Count(),
+            UnpaidAlterings = x.Alterings.Count(z => z.State == AlteringState.Paid)
+        };
+
+        [HttpGet]
+        public async Task<IList<CustomerViewModel>> GetAllCustomers()
+        {
+            var res = await _dbContext.Customers.Select(selector).ToListAsync();
             return res;
         }
 
         [HttpGet("{id}")]
-        public async Task<Customer> Get(int id)
+        public async Task<CustomerViewModel> Get(int id)
         {
-            var res = await _dbContext.Customers.FindAsync(id);
+            var res = await _dbContext.Customers.Select(selector).FirstOrDefaultAsync(x => x.Id == id);
             return res;
         }
     }
