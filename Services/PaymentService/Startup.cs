@@ -43,6 +43,7 @@ namespace PaymentService
                 new List<Type>());
 
             services.AddTransient<IValidator<NewPaymentViewModel>, NewPaymentValidator>();
+            services.AddApplicationInsightsTelemetry();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

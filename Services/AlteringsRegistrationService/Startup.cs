@@ -46,6 +46,7 @@ namespace AlteringsRegistrationService
                 typeof(OrderPaidHandler)
             });
             services.AddTransient<IValidator<Altering>, NewAlterationValidator>();
+            services.AddApplicationInsightsTelemetry();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
