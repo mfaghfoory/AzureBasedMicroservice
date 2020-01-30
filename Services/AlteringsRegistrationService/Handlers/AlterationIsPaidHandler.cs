@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlteringsRegistrationService.Handlers
 {
-    public class AlterationIsPaidHandler : IConsumer<AlterationIsPaid>
+    public class AlterationIsPaidHandler : IConsumer<OrderPaid>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly DbSet<Altering> _repo;
@@ -16,7 +16,7 @@ namespace AlteringsRegistrationService.Handlers
             _unitOfWork = unitOfWork;
             _repo = unitOfWork.Set<Altering>();
         }
-        public async Task Consume(ConsumeContext<AlterationIsPaid> context)
+        public async Task Consume(ConsumeContext<OrderPaid> context)
         {
             var obj = await _repo.FindAsync(context.Message.AlterationId);
             obj.State = AlteringState.Paid;

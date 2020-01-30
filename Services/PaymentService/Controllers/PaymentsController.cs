@@ -42,7 +42,7 @@ namespace PaymentService.Controllers
                 TrackingCode = trackingCode
             });
             await _unitOfWork.SaveChangesAsync();
-            await _bus.Publish(new AlterationIsPaid { AlterationId = model.AlteringId });
+            await _bus.Publish(new OrderPaid { AlterationId = model.AlteringId });
             return Ok(trackingCode);
         }
     }
