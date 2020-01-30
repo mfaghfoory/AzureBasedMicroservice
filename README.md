@@ -15,6 +15,7 @@ Simple micro-service implementation based on Azure
 #### 3 - [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) (For API documentation based on Swagger and OpenAPI specification)
 #### 4 - [MassTransit](https://masstransit-project.com/) (For creating distributed application based on both RabbitMQ/Microsoft Azure(Interchangeable) - because of the US sanctions, we are restricted to use Microsoft Azure services in Iran but as I already have studied about such services, I designed this part to be changable with RabbitMQ. So during the test time we can test it with rabbitmq and for production, we can set it to use Azure)
 #### 5 - [SQLite](https://www.sqlite.org/index.html) For database
+#### 6 - [Application Insight](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) Microsoft's application performance management solution for monitoring and analysing application data such as page load times, server performance counters, dependency wait times and more. Can be used with both azure and localhost and again due to the sanctions, I couldn't test it practically on Azure but it can be simply change to work with that.
 
 ### Front-end part
 #### 1 - [Angular v8](https://angular.io/) For creating UI
