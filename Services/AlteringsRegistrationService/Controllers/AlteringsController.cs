@@ -1,6 +1,8 @@
 ﻿using AlteringsRegistrationService.Models;
 using AzureBasedMicroservice.EntityFramework.Alterings;
 using AzureBasedMicroservice.EntityFramework.DBContext;
+using AzureBasedMicroservice.Shared.CQRS.Commands;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,10 +18,12 @@ namespace AlteringsRegistrationService.Controllers
     public class AlteringsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IBus _bus;
         private readonly DbSet<Altering> context;
-        public AlteringsController(IUnitOfWork unitOfWork)
+        public AlteringsController(IUnitOfWork unitOfWork, IBus bus)
         {
             _unitOfWork = unitOfWork;
+            _bus = bus;
             context = unitOfWork.Set<Altering>();
         }
         Expression<Func<Altering, AlterationViewModel>> selector = x => new AlterationViewModel
@@ -48,6 +52,18 @@ namespace AlteringsRegistrationService.Controllers
             model.State = AlteringState.Initial;
             context.Add(model);
             await _unitOfWork.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SetDone(int alterationId)
+        {
+            var alteration = await context.FirstOrDefaultAsync(x => x.Id == alterationId); ;
+            if (alteration == null)
+                return NotFound();
+            alteration.State = AlteringState.Done;
+            await _unitOfWork.SaveChangesAsync();
+            await _bus.Publish(new AlterationFinished { AlterationId = alterationId });
             return Ok();
         }
     }
