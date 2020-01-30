@@ -37,4 +37,16 @@ export class AppMainServiceService {
       model
     );
   }
+
+  setOnGoing(alterationId: number): Observable<string> {
+    return this.httpClient.post<string>(`${environment.apiUrl}api/AlteringsService/Alterings/SetOnGoing?alterationId=${alterationId}`,
+      {}
+    );
+  }
+
+  setDone(alterationId: number): Observable<string> {
+    return this.httpClient.post<string>(`${environment.apiUrl}api/AlteringsService/Alterings/SetDone?alterationId=${alterationId}`,
+      {}
+    );
+  }
 }

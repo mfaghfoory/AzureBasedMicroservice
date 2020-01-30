@@ -55,7 +55,18 @@ namespace AlteringsRegistrationService.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("SetOnGoing")]
+        public async Task<IActionResult> SetOnGoing(int alterationId)
+        {
+            var alteration = await context.FirstOrDefaultAsync(x => x.Id == alterationId); ;
+            if (alteration == null)
+                return NotFound();
+            alteration.State = AlteringState.OnGoing;
+            await _unitOfWork.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPost("SetDone")]
         public async Task<IActionResult> SetDone(int alterationId)
         {
             var alteration = await context.FirstOrDefaultAsync(x => x.Id == alterationId); ;

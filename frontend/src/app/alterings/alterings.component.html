@@ -29,13 +29,15 @@
             <td>
                 <button *ngIf="item.state == 'Initial'" class="btn btn-primary" data-toggle="modal"
                     data-target="#payment" (click)="currentAlteration = item.id">Set To Paid</button>
-                <button *ngIf="item.state == 'Paid'" class="btn btn-success">Set To Done</button>
+                <button *ngIf="item.state == 'Paid'" class="btn btn-success" data-toggle="modal"
+                data-target="#changeOnGoing" (click)="currentAlteration = item.id">Start Working</button>
+                <button *ngIf="item.state == 'OnGoing'" class="btn btn-success">Set To Done</button>
             </td>
         </tr>
     </tbody>
 </table>
 
-<!-- Modal -->
+<!-- New Payment Modal -->
 <div id="payment" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -62,6 +64,7 @@
     </div>
 </div>
 
+<!-- New Alteration Modal -->
 <div id="alteration" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -97,6 +100,29 @@
             <div class="modal-footer">
                 <button type="button" [disabled]="pending" class="btn btn-secondary" data-dismiss="modal" #closeAlterationModal>Close</button>
                 <button type="button" [disabled]="pending" class="btn btn-primary" (click)="onCreateNewAlteration()">Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Confirm Modal -->
+<div id="changeOnGoing" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Are you sure?</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" *ngIf="errorReturned">
+                    <pre>{{errorReturned}}</pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]="pending" class="btn btn-secondary" data-dismiss="modal" #closeConfirmModal>Close</button>
+                <button type="button" [disabled]="pending" class="btn btn-primary" (click)="setOngoing()">Save</button>
             </div>
         </div>
 

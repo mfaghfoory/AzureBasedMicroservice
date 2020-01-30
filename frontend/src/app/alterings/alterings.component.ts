@@ -25,6 +25,7 @@ export class AlteringsComponent implements OnInit {
   newAlteration: NewAlteration;
   @ViewChild('closePaymentModal', { static: true }) closePaymentModal: ElementRef;
   @ViewChild('closeAlterationModal', { static: true }) closeAlterationModal: ElementRef;
+  @ViewChild('closeConfirmModal', { static: true }) closeConfirmModal: ElementRef;
   ngOnInit() {
     this.route.params
       .subscribe(p => {
@@ -74,6 +75,23 @@ export class AlteringsComponent implements OnInit {
       subscribe(x => {
         this.pending = false;
         setTimeout(() => { this.closeAlterationModal.nativeElement.click(); }, 50)
+        this.loadData();
+        this.newAlteration = new NewAlteration(this.customerId)
+      }, err => {
+        if (err.status == 400 && err.error) {
+          this.errorReturned = this.flattenError(err);
+        }
+        this.pending = false;
+      })
+  }
+
+  setOngoing() {
+    this.errorReturned = null;
+    this.pending = true;
+    this.service.setOnGoing(this.currentAlteration).
+      subscribe(x => {
+        this.pending = false;
+        setTimeout(() => { this.closeConfirmModal.nativeElement.click(); }, 50)
         this.loadData();
         this.newAlteration = new NewAlteration(this.customerId)
       }, err => {

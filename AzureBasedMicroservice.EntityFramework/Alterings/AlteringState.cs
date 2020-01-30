@@ -4,6 +4,7 @@
     {
         Initial,
         Paid,
+        OnGoing,
         Done
     }
 }

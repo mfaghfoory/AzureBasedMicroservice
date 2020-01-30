@@ -32,8 +32,9 @@ namespace CustomersService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = projectName, Version = "v1" });
             });
-
-            MassTransistConfiguration.MassTransist(services, projectName,
+            var massTransitConfig = Configuration.GetSection("MassTransitConfig").Get<MassTransitConfig>();
+            services.AddSingleton(massTransitConfig);
+            MassTransistSetup.MassTransist(services, projectName, massTransitConfig,
                 new List<Type>());
         }
 
