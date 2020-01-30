@@ -24,8 +24,6 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
 
                     b.Property<int>("Direction");
 
-                    b.Property<bool>("IsIncrease");
-
                     b.Property<int>("Operation");
 
                     b.Property<int>("State");

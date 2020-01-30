@@ -17,25 +17,27 @@ export class AlteringsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private service: AppMainServiceService) { }
   data: Alterations[];
   customer: Customers;
+  customerId: number;
   currentAlteration = 0;
   amount = 0;
   pending = false;
   errorReturned = '';
-  newAlteration: NewAlteration = null;
+  newAlteration: NewAlteration;
   @ViewChild('closePaymentModal', { static: true }) closePaymentModal: ElementRef;
   @ViewChild('closeAlterationModal', { static: true }) closeAlterationModal: ElementRef;
   ngOnInit() {
     this.route.params
       .subscribe(p => {
-        const customerId = p.id;
-        this.loadCustomerInfo(customerId);
-        this.loadData(customerId);
+        this.customerId = p.id;
+        this.newAlteration = new NewAlteration(this.customerId)
+        this.loadCustomerInfo();
+        this.loadData();
       });
   }
 
-  loadData(customerId: number) {
+  loadData() {
     this.isLoading = true;
-    this.service.getAlterationsByCustomerId(customerId).subscribe(x => {
+    this.service.getAlterationsByCustomerId(this.customerId).subscribe(x => {
       this.data = x;
       this.isLoading = false;
     }, err => {
@@ -44,8 +46,8 @@ export class AlteringsComponent implements OnInit {
     });
   }
 
-  loadCustomerInfo(customerId: number) {
-    this.service.getCustomerById(customerId).subscribe(x => {
+  loadCustomerInfo() {
+    this.service.getCustomerById(this.customerId).subscribe(x => {
       this.customer = x;
     })
   }
@@ -72,6 +74,8 @@ export class AlteringsComponent implements OnInit {
       subscribe(x => {
         this.pending = false;
         setTimeout(() => { this.closeAlterationModal.nativeElement.click(); }, 50)
+        this.loadData();
+        this.newAlteration = new NewAlteration(this.customerId)
       }, err => {
         if (err.status == 400 && err.error) {
           this.errorReturned = this.flattenError(err);

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AzureBasedMicroservice.EntityFramework.Migrations
 {
     [DbContext(typeof(AzureBasedMicroserviceContext))]
-    [Migration("20200129220331_v1")]
+    [Migration("20200130083815_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,8 +25,6 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
                     b.Property<int>("CustomerId");
 
                     b.Property<int>("Direction");
-
-                    b.Property<bool>("IsIncrease");
 
                     b.Property<int>("Operation");
 

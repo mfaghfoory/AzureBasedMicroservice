@@ -26,10 +26,9 @@ namespace AlteringsRegistrationService.Controllers
         {
             Id = x.Id,
             Direction = x.Direction.ToString(),
-            IsIncrease = x.IsIncrease,
             Operation = x.Operation.ToString(),
             State = x.State.ToString(),
-            Value = x.Value
+            Value = x.Value + "cm"
         };
 
         [HttpGet]
@@ -46,6 +45,7 @@ namespace AlteringsRegistrationService.Controllers
             {
                 return BadRequest(ModelState);
             }
+            model.State = AlteringState.Initial;
             context.Add(model);
             await _unitOfWork.SaveChangesAsync();
             return Ok();

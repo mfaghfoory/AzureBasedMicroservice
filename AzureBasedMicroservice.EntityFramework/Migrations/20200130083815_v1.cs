@@ -29,8 +29,7 @@ namespace AzureBasedMicroservice.EntityFramework.Migrations
                     State = table.Column<int>(nullable: false),
                     Operation = table.Column<int>(nullable: false),
                     Direction = table.Column<int>(nullable: false),
-                    Value = table.Column<int>(nullable: false),
-                    IsIncrease = table.Column<bool>(nullable: false)
+                    Value = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

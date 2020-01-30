@@ -10,8 +10,6 @@
 
         public string Direction { get; set; }
 
-        public int Value { get; set; }
-
-        public bool IsIncrease { get; set; }
+        public string Value { get; set; }
     }
 }

@@ -28,11 +28,6 @@ namespace AzureBasedMicroservice.EntityFramework.Alterings
         /// </summary>
         public int Value { get; set; }
 
-        /// <summary>
-        /// If true, the value will be added to previous size and vice versa
-        /// </summary>
-        public bool IsIncrease { get; set; }
-
         [ForeignKey(nameof(CustomerId))]
         public Customer Customer { get; set; }
     }

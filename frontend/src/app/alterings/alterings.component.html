@@ -6,6 +6,8 @@
 <div class="alert alert-info">
     <div *ngIf="customer">Orders of {{customer.fullName}}</div>
 </div>
+<button class="btn btn-primary" data-toggle="modal"
+                    data-target="#alteration" >New</button>
 <table class="table table-hover">
     <div *ngIf="isLoading">Loading...</div>
     <div *ngIf="!isLoading && !data.length">No data found</div>
@@ -14,7 +16,6 @@
             <th>Operation</th>
             <th>Value</th>
             <th>Direction</th>
-            <th>Is Increase</th>
             <th>State</th>
             <th>Operations</th>
         </tr>
@@ -24,7 +25,6 @@
             <td>{{item.operation}}</td>
             <td>{{item.value}}</td>
             <td>{{item.direction}}</td>
-            <td>{{item.isIncrease}}</td>
             <td>{{item.state}}</td>
             <td>
                 <button *ngIf="item.state == 'Initial'" class="btn btn-primary" data-toggle="modal"
@@ -72,8 +72,23 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="amount">Amount</label>
-                    <input type="number" name="amount" class="form-control" placeholder="Enter amount" [(ngModel)]="amount">
+                    <label for="operation">Operation</label>
+                    <select name="operation" class="form-control" [(ngModel)]="newAlteration.operation">
+                        <option value="0">Shorten Sleeves</option>
+                        <option value="1">Shorten Trousers</option>
+                    </select>                    
+                </div>
+                <div class="form-group">
+                    <label for="direction">Direction</label>
+                    <select name="direction" class="form-control" [(ngModel)]="newAlteration.direction">
+                        <option value="0">Left</option>
+                        <option value="1">Right</option>
+                        <option value="2">Both</option>
+                    </select>                    
+                </div>
+                <div class="form-group">
+                    <label for="amount">Value</label>
+                    <input type="number" name="value" class="form-control" placeholder="Enter Value" [(ngModel)]="newAlteration.value">
                 </div>
                 <div class="alert alert-danger" *ngIf="errorReturned">
                     <pre>{{errorReturned}}</pre>
