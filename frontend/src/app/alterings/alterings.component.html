@@ -29,9 +29,12 @@
             <td>
                 <button *ngIf="item.state == 'Initial'" class="btn btn-primary" data-toggle="modal"
                     data-target="#payment" (click)="currentAlteration = item.id">Set To Paid</button>
+
                 <button *ngIf="item.state == 'Paid'" class="btn btn-success" data-toggle="modal"
-                data-target="#changeOnGoing" (click)="currentAlteration = item.id">Start Working</button>
-                <button *ngIf="item.state == 'OnGoing'" class="btn btn-success">Set To Done</button>
+                data-target="#changeOnGoing" (click)="currentState = item.state; currentAlteration = item.id">Start Working</button>
+
+                <button *ngIf="item.state == 'OnGoing'" class="btn btn-success" data-toggle="modal"
+                data-target="#changeOnGoing" (click)="currentState = item.state; currentAlteration = item.id">Set To Done</button>
             </td>
         </tr>
     </tbody>
@@ -109,7 +112,6 @@
 <!-- Confirm Modal -->
 <div id="changeOnGoing" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -122,7 +124,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" [disabled]="pending" class="btn btn-secondary" data-dismiss="modal" #closeConfirmModal>Close</button>
-                <button type="button" [disabled]="pending" class="btn btn-primary" (click)="setOngoing()">Save</button>
+                <button type="button" [disabled]="pending" class="btn btn-primary" (click)="currentState == 'Paid' ? setOngoing() : setDone()">Yes</button>
             </div>
         </div>
 

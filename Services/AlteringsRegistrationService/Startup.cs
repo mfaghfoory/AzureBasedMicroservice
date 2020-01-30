@@ -39,7 +39,8 @@ namespace AlteringsRegistrationService
 
             var massTransitConfig = Configuration.GetSection("MassTransitConfig").Get<MassTransitConfig>();
             services.AddSingleton(massTransitConfig);
-            MassTransistSetup.MassTransist(services, projectName, massTransitConfig,
+
+            services.MassTransist(projectName, massTransitConfig,
                 new List<Type>()
             {
                 typeof(OrderPaidHandler)

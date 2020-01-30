@@ -35,7 +35,7 @@ namespace AzureBasedMicroservice.Shared.CQRS
                             {
                                 foreach (var item in consumers)
                                 {
-                                    e.Consumer(item, c => p.GetRequiredService(c));
+                                    e.Consumer(item, c => services.BuildServiceProvider().GetRequiredService(c));
                                 }
                             });
                             // or, configure the endpoints by convention
@@ -58,7 +58,7 @@ namespace AzureBasedMicroservice.Shared.CQRS
                             {
                                 foreach (var item in consumers)
                                 {
-                                    e.Consumer(item, c => p.GetRequiredService(c));
+                                    e.Consumer(item, c => services.BuildServiceProvider().GetRequiredService(c));
                                 }
                             });
                             // or, configure the endpoints by convention
@@ -68,7 +68,7 @@ namespace AzureBasedMicroservice.Shared.CQRS
                         });
                     }                    
                     bus.Start();
-                    services.AddSingleton<IBus>(bus);
+                    services.AddScoped(provider => bus);
                     return bus;
                 });
             });

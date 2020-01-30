@@ -1,5 +1,6 @@
 ﻿using AzureBasedMicroservice.EntityFramework.DBContext;
 using AzureBasedMicroservice.Shared.CQRS;
+using CustomersService.Handlers;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,8 +35,12 @@ namespace CustomersService
             });
             var massTransitConfig = Configuration.GetSection("MassTransitConfig").Get<MassTransitConfig>();
             services.AddSingleton(massTransitConfig);
-            MassTransistSetup.MassTransist(services, projectName, massTransitConfig,
-                new List<Type>());
+
+            services.MassTransist(projectName, massTransitConfig,
+                new List<Type> 
+                {
+                     typeof(AlterationFinishedHandler)
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

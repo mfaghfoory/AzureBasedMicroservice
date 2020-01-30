@@ -39,7 +39,7 @@ namespace PaymentService
 
             var massTransitConfig = Configuration.GetSection("MassTransitConfig").Get<MassTransitConfig>();
             services.AddSingleton(massTransitConfig);
-            MassTransistSetup.MassTransist(services, projectName, massTransitConfig,
+            services.MassTransist(projectName, massTransitConfig,
                 new List<Type>());
 
             services.AddTransient<IValidator<NewPaymentViewModel>, NewPaymentValidator>();
