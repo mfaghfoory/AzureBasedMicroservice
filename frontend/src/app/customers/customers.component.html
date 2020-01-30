@@ -4,16 +4,22 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>New Alterations</th>
+            <th>Paid Alterations</th>
+            <th>OnGoing Alterations</th>
+            <th>Finished Alterations</th>
             <th>All Alterations</th>
-            <th>Unpaid Alterations</th>
             <th>Operations</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let item of data">
             <td>{{item.fullName}}</td>
+            <td>{{item.initialAlterings}}</td>
+            <td>{{item.paidAlterings}}</td>
+            <td>{{item.onGoingAlterings}}</td>
+            <td>{{item.doneAlterings}}</td>
             <td>{{item.overallAlterings}}</td>
-            <td>{{item.unpaidAlterings}}</td>
             <td>
                 <a [routerLink]="['../alterations', item.id]" class="btn btn-primary">Alterations</a>
             </td>

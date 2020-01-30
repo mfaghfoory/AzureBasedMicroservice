@@ -1,6 +1,9 @@
 export interface Customers {
     id: number;
     fullName: string,
-    unpaidAlterings: number;
+    paidAlterings: number;
     overallAlterings: number;
+    doneAlterings: number;
+    onGoingAlterings: number;
+    initialAlterings: number;
 }

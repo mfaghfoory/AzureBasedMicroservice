@@ -29,7 +29,10 @@ namespace CustomersService.Controllers
             Id = x.Id,
             FullName = x.FullName,
             OverallAlterings = x.Alterings.Count(),
-            UnpaidAlterings = x.Alterings.Count(z => z.State == AlteringState.Paid)
+            InitialAlterings = x.Alterings.Count(z => z.State == AlteringState.Initial),
+            PaidAlterings = x.Alterings.Count(z => z.State == AlteringState.Paid),
+            OnGoingAlterings = x.Alterings.Count(z => z.State == AlteringState.OnGoing),
+            DoneAlterings = x.Alterings.Count(z => z.State == AlteringState.Done),
         };
 
         [HttpGet]
