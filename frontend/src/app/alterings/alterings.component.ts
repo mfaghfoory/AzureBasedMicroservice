@@ -60,7 +60,8 @@ export class AlteringsComponent implements OnInit {
     this.service.registerNewPayment({ alteringId: this.currentAlteration, amount: this.amount }).
       subscribe(x => {
         this.pending = false;
-        setTimeout(() => { this.closePaymentModal.nativeElement.click(); }, 50)
+        setTimeout(() => { this.closePaymentModal.nativeElement.click(); }, 50);
+        this.data.find(x => x.id == this.currentAlteration).state = 'Paid';
       }, err => {
         if (err.status == 400 && err.error) {
           this.errorReturned = this.flattenError(err);

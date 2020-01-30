@@ -33,7 +33,7 @@
                 <button *ngIf="item.state == 'Paid'" class="btn btn-success" data-toggle="modal"
                 data-target="#changeOnGoing" (click)="currentState = item.state; currentAlteration = item.id">Start Working</button>
 
-                <button *ngIf="item.state == 'OnGoing'" class="btn btn-success" data-toggle="modal"
+                <button *ngIf="item.state == 'OnGoing'" class="btn btn-warning" data-toggle="modal"
                 data-target="#changeOnGoing" (click)="currentState = item.state; currentAlteration = item.id">Set To Done</button>
             </td>
         </tr>
