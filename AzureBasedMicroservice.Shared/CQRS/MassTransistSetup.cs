@@ -8,7 +8,7 @@ namespace AzureBasedMicroservice.Shared.CQRS
 {
     public static class MassTransistSetup
     {
-        public static void MassTransist(this IServiceCollection services, 
+        public static IBus MassTransist(this IServiceCollection services, 
             string queueName, MassTransitConfig config, List<Type> consumers)
         {
             foreach (var item in consumers)
@@ -68,10 +68,11 @@ namespace AzureBasedMicroservice.Shared.CQRS
                         });
                     }                    
                     bus.Start();
-                    services.AddScoped(provider => bus);
+                    services.AddSingleton(provider => bus);
                     return bus;
                 });
             });
+            return services.BuildServiceProvider().GetRequiredService<IBus>(); //Warmup bus
         }
     }
 }
