@@ -40,7 +40,7 @@ namespace AlteringsRegistrationService
             MassTransistConfiguration.MassTransist(services, projectName,
                 new List<Type>()
             {
-                typeof(AlterationIsPaidHandler)
+                typeof(OrderPaidHandler)
             });
             services.AddTransient<IValidator<Altering>, NewAlterationValidator>();
         }

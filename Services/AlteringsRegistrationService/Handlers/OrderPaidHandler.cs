@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace AlteringsRegistrationService.Handlers
 {
-    public class AlterationIsPaidHandler : IConsumer<OrderPaid>
+    public class OrderPaidHandler : IConsumer<OrderPaid>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly DbSet<Altering> _repo;
-        public AlterationIsPaidHandler(IUnitOfWork unitOfWork)
+        public OrderPaidHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _repo = unitOfWork.Set<Altering>();
