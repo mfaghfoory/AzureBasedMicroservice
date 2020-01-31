@@ -76,7 +76,7 @@ namespace AzureBasedMicroservice.Tests
             var result = await controller.SetOnGoing(data.Id);
 
             Assert.IsTrue(data.State == EntityFramework.Alterings.AlteringState.OnGoing);
-            Assert.IsTrue((result as OkResult) != null, "It should return OkFound with valid AlterationId");
+            Assert.IsTrue((result as OkResult) != null, "It should return OkResult with valid AlterationId");
 
             removeAlterationFromDb(data.Id);
         }
@@ -106,7 +106,7 @@ namespace AzureBasedMicroservice.Tests
             var result = await controller.SetDone(data.Id);
 
             Assert.IsTrue(data.State == EntityFramework.Alterings.AlteringState.Done);
-            Assert.IsTrue((result as OkResult) != null, "It should return OkFound with valid AlterationId");
+            Assert.IsTrue((result as OkResult) != null, "It should return OkResult with valid AlterationId");
 
             removeAlterationFromDb(data.Id);
         }

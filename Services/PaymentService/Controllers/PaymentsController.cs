@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PaymentService.Models;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PaymentService.Controllers
@@ -33,6 +34,10 @@ namespace PaymentService.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+            if (!alterings.Any(x => x.Id == model.AlteringId))
+            {
+                return BadRequest($"There is no any alteration with Id = {model.AlteringId}");
             }
             var trackingCode = Guid.NewGuid().ToString();
             context.Add(new Payment
