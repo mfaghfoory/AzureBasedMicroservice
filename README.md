@@ -24,6 +24,7 @@ Simple micro-service implementation based on Azure
 ### Tests
 #### 1 - [Microsoft Test Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.SDK) For writing tests
 #### 2 - [moq](https://github.com/Moq/moq4/wiki/Quickstart) For mocking objects during tests
+#### 3 - [RestSharp](http://restsharp.org/) For applying integration tests
 
 ## How to start it
 
