@@ -34,6 +34,14 @@ namespace AzureBasedMicroservice.Tests
         }
 
         [TestMethod]
+        public async Task Get_Match_Error_With_Condition()
+        {
+            var result = await controller.Get(100);
+
+            Assert.IsTrue(result.Result is NotFoundResult && result.Value == null, "It should return NotFound when there is no such data");
+        }
+
+        [TestMethod]
         public async Task Get_Check_Invalid_Data()
         {
             var result = await controller.Get(100);

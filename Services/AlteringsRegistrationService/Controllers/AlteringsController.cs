@@ -1,5 +1,6 @@
 ﻿using AlteringsRegistrationService.Models;
 using AzureBasedMicroservice.EntityFramework.Alterings;
+using AzureBasedMicroservice.EntityFramework.Customers;
 using AzureBasedMicroservice.EntityFramework.DBContext;
 using AzureBasedMicroservice.Shared.CQRS.Commands;
 using MassTransit;
@@ -20,11 +21,13 @@ namespace AlteringsRegistrationService.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBus _bus;
         private readonly DbSet<Altering> context;
+        private readonly DbSet<Customer> customers;
         public AlteringsController(IUnitOfWork unitOfWork, IBus bus)
         {
             _unitOfWork = unitOfWork;
             _bus = bus;
             context = unitOfWork.Set<Altering>();
+            customers = unitOfWork.Set<Customer>();
         }
         Expression<Func<Altering, AlterationViewModel>> selector = x => new AlterationViewModel
         {
@@ -36,7 +39,7 @@ namespace AlteringsRegistrationService.Controllers
         };
 
         [HttpGet]
-        public async Task<IList<AlterationViewModel>> GetAllAlterations(int customerId)
+        public async Task<ActionResult<IList<AlterationViewModel>>> GetAllAlterations(int customerId)
         {
             var res = await context.Where(x => x.CustomerId == customerId).Select(selector).ToListAsync();
             return res;
@@ -48,6 +51,10 @@ namespace AlteringsRegistrationService.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+            if (!customers.Any(x => x.Id == model.CustomerId))
+            {
+                return BadRequest($"There is no any customer with Id = {model.CustomerId}");
             }
             model.State = AlteringState.Initial;
             context.Add(model);
