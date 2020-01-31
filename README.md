@@ -21,6 +21,10 @@ Simple micro-service implementation based on Azure
 #### 1 - [Angular v8](https://angular.io/) For creating UI
 #### 2 - [Bootstrap](https://getbootstrap.com/) For applying styles (The template is very simple but it can be improved if I decide to continue this project)
 
+### Tests
+#### 1 - [Microsoft Test Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.SDK) For writing tests
+#### 2 - [moq](https://github.com/Moq/moq4/wiki/Quickstart) For mocking objects during tests
+
 ## How to start it
 
 #### 1 - You have to run this command to create db. Make sure you have set "ApiGateway" project as Startup then put "AzureBasedMicroservice.EntityFramework" as default project in package manager console and then run update-database. It will create a database called "SampleDb.db" in drive D:\
