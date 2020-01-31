@@ -51,7 +51,7 @@ namespace AzureBasedMicroservice.Tests
             };
             var result = await controller.CreateAlteration(data);
 
-            Assert.IsTrue((result as OkResult) != null);
+            Assert.IsTrue((result as OkObjectResult) != null, result.ToString());
 
             removeAlterationFromDb(data.Id);
         }

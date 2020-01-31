@@ -59,7 +59,7 @@ namespace AlteringsRegistrationService.Controllers
             model.State = AlteringState.Initial;
             context.Add(model);
             await _unitOfWork.SaveChangesAsync();
-            return Ok();
+            return Ok(new { model.Id });
         }
 
         [HttpPost("SetOnGoing")]
