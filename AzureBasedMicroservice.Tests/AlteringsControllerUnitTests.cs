@@ -1,8 +1,10 @@
 using AlteringsRegistrationService.Controllers;
 using AzureBasedMicroservice.EntityFramework.DBContext;
-using CustomersService.Controllers;
+using AzureBasedMicroservice.Shared.CQRS.Commands;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +15,7 @@ namespace AzureBasedMicroservice.Tests
     {
         private AlteringsController controller;
         private AzureBasedMicroserviceContext dbContext;
-
+        private int alterationIdPublishedByMockedBus;
         public AlteringsControllerUnitTests()
         {
             controller = new AlteringsController(new AzureBasedMicroserviceContext(), null);
@@ -75,6 +77,38 @@ namespace AzureBasedMicroservice.Tests
 
             Assert.IsTrue(data.State == EntityFramework.Alterings.AlteringState.OnGoing);
             Assert.IsTrue((result as OkResult) != null, "It should return OkFound with valid AlterationId");
+
+            removeAlterationFromDb(data.Id);
+        }
+
+
+        [TestMethod]
+        public async Task SetDone_CheckValidity()
+        {
+            var result = await controller.SetDone(-111);
+
+            Assert.IsTrue((result as NotFoundResult) != null, "It should return NotFound with invalid AlterationId");
+        }
+
+        [TestMethod]
+        public async Task SetDone_CheckFunctionality()
+        {
+            var mock = new Mock<IBus>();
+            var data = new EntityFramework.Alterings.Altering
+            {
+                CustomerId = 1,
+                Value = 1
+            };
+            mock.Setup(x => x.Publish(new AlterationFinished(), default)).Returns(Task.CompletedTask);
+            controller = new AlteringsController(new AzureBasedMicroserviceContext(), mock.Object);
+
+            await controller.CreateAlteration(data);
+            var result = await controller.SetDone(data.Id);
+
+            Assert.IsTrue(data.State == EntityFramework.Alterings.AlteringState.Done);
+            Assert.IsTrue((result as OkResult) != null, "It should return OkFound with valid AlterationId");
+
+            removeAlterationFromDb(data.Id);
         }
 
 
