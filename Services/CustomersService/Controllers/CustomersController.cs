@@ -36,16 +36,20 @@ namespace CustomersService.Controllers
         };
 
         [HttpGet]
-        public async Task<IList<CustomerViewModel>> GetAllCustomers()
+        public async Task<ActionResult<IList<CustomerViewModel>>> GetAllCustomers()
         {
             var res = await context.Select(selector).ToListAsync();
             return res;
         }
 
         [HttpGet("{id}")]
-        public async Task<CustomerViewModel> Get(int id)
+        public async Task<ActionResult<CustomerViewModel>> Get(int id)
         {
             var res = await context.Select(selector).FirstOrDefaultAsync(x => x.Id == id);
+            if(res == null)
+            {
+                return NotFound();
+            }
             return res;
         }
     }
