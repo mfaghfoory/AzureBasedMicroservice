@@ -1,6 +1,4 @@
-using AlteringsRegistrationService.Controllers;
 using AzureBasedMicroservice.EntityFramework.Alterings;
-using AzureBasedMicroservice.EntityFramework.Customers;
 using AzureBasedMicroservice.EntityFramework.DBContext;
 using AzureBasedMicroservice.Shared.CQRS.Commands;
 using MassTransit;
@@ -19,7 +17,6 @@ namespace AzureBasedMicroservice.Tests
     {
         private PaymentsController controller;
         private AzureBasedMicroserviceContext dbContext;
-        private int alterationIdPublishedByMockedBus;
         public PaymentsControllerUnitTests()
         {
             controller = new PaymentsController(new AzureBasedMicroserviceContext(), null);            
